@@ -11,7 +11,7 @@ const SectionCases = () => {
 
     const { casesContext } = useContext(DataContext);
     
-    let dates_for_chart = cases_by_date(casesContext).map(date => date.date).reverse();
+    let dates_for_chart = cases_by_date(casesContext).map(date => moment(date.date).format('DD-MM-YY')).reverse();
     let cases_for_chart = cases_by_date(casesContext).map(date => date.daily_cases).reverse();
    
     const data = {
@@ -21,9 +21,9 @@ const SectionCases = () => {
             label: 'Cases',
             data: cases_for_chart,
             fill: false,
-            stepped: true,
-            backgroundColor: 'orange',
-            borderColor: 'orange',
+            stepped: false,
+            backgroundColor: 'bg-orange',
+            borderColor: 'bg-orange',
           },
         ],
     };
@@ -34,15 +34,15 @@ const SectionCases = () => {
           text: 'Covid-19 Cases',
           color: 'orange'
         },       
-      };
+    };
     
     const renderTable = () => {
         return (    
             <table className="text-white text-center w-full">
                     <thead>
                         <tr className="bg-primary text-sm text-center font-medium">
-                            <th className="p-4 text-orange">Date</th>
-                            <th className="p-4 text-green">Cases</th>                            
+                            <th className="p-4 text-white">Date</th>
+                            <th className="p-4 text-orange">Cases</th>                            
                         </tr>
                     </thead>
     
@@ -51,12 +51,12 @@ const SectionCases = () => {
                     {cases_by_date(casesContext).slice(0,7).map((day, index) => (
                         <tr 
                             key={day.date} 
-                            className={`${(index % 2 === 0) ? '' : 'bg-primary'} text-sm font-medium`}
+                            className={`${(index % 2 !== 0) && 'bg-primary'} text-sm font-medium`}
                         >
-                            <td className="p-2 text-orange">
+                            <td className="p-2 text-white">
                                 {moment(day.date).format('DD-MM')}
                             </td>
-                            <td className="p-2 text-green">
+                            <td className="p-2 text-orange">
                                 {day.daily_cases}
                             </td>
                         </tr>

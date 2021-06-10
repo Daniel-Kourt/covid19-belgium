@@ -6,6 +6,17 @@ export const count_cases = (cases) => {
     return total_cases;
 }
 
+export const cases_by_gender = (cases) => {
+    let cases_male = cases.filter(item => {
+        return item.SEX === 'M'
+    }).reduce( (sum, { CASES }) => sum + CASES, 0 );
+    let cases_female = cases.filter(item => {
+        return item.SEX === 'F'
+    }).reduce( (sum, { CASES }) => sum + CASES, 0 );
+
+    return {cases_male, cases_female};
+}
+
 
 // creates an array of daily data of cases
 export const cases_by_date = (cases) => {
@@ -44,3 +55,4 @@ export const cases_by_date = (cases) => {
     
     return casesFiltered;
 }
+

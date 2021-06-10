@@ -1,9 +1,9 @@
 
 const Last7Days = ({ renderTable }) => {
     return (
-        <div className="bg-secondary p-4 rounded-lg w-full max-w-xs">
+        <div className="bg-secondary p-4 rounded-lg w-full max-w-sm">
 
-            <p className="text-white text-left text-xl font-semibold mb-4">
+            <p className="text-white text-left text-lg font-semibold mb-4 pl-2">
                 Last 7 Days
             </p>
 

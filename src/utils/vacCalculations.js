@@ -1,6 +1,5 @@
 import lodash from 'lodash';
-
-const POPULATION = 11673469;
+import { POPULATION, POPULATION_BRUSSELS, POPULATION_FLANDERS, POPULATION_WALLONIA } from '../constants';
 
 // calculates the total vaccinations of dose A
 export const count_vaccinations_A = (vaccins) => {
@@ -51,4 +50,43 @@ export const vaccinations_by_date = (vaccins) => {
 
     return vaccinations_filtered;
 
+}
+
+// calculates vaccinations for region of brussels
+export const vaccinations_brussels = (vaccins) => {
+    let vacc_brussels = vaccins.filter(item => item.REGION === 'Brussels');
+
+    let vacc_brussels_A = vacc_brussels.filter(item => item.DOSE === 'A').reduce( (sum, { COUNT }) => sum + COUNT, 0 );
+    let vacc_brussels_B = vacc_brussels.filter(item => item.DOSE === 'B').reduce( (sum, { COUNT }) => sum + COUNT, 0 );
+
+    let percentage_A = (vacc_brussels_A / POPULATION_BRUSSELS * 100).toFixed(2);
+    let percentage_B = (vacc_brussels_B / POPULATION_BRUSSELS * 100).toFixed(2);
+
+    return { vacc_brussels_A, vacc_brussels_B, percentage_A, percentage_B };
+}
+
+// calculates vaccinations for region of wallonia
+export const vaccinations_wallonia = (vaccins) => {
+    let vacc_wallonia = vaccins.filter(item => item.REGION === 'Wallonia');
+
+    let vacc_wallonia_A = vacc_wallonia.filter(item => item.DOSE === 'A').reduce( (sum, { COUNT }) => sum + COUNT, 0 );
+    let vacc_wallonia_B = vacc_wallonia.filter(item => item.DOSE === 'B').reduce( (sum, { COUNT }) => sum + COUNT, 0 );
+
+    let percentage_A = (vacc_wallonia_A / POPULATION_WALLONIA * 100).toFixed(2);
+    let percentage_B = (vacc_wallonia_B / POPULATION_WALLONIA * 100).toFixed(2);
+
+    return { vacc_wallonia_A, vacc_wallonia_B, percentage_A, percentage_B };
+}
+
+// calculates vaccinations for region of flanders
+export const vaccinations_flanders = (vaccins) => {
+    let vacc_flanders = vaccins.filter(item => item.REGION === 'Flanders');
+
+    let vacc_flanders_A = vacc_flanders.filter(item => item.DOSE === 'A').reduce( (sum, { COUNT }) => sum + COUNT, 0 );
+    let vacc_flanders_B = vacc_flanders.filter(item => item.DOSE === 'B').reduce( (sum, { COUNT }) => sum + COUNT, 0 );
+
+    let percentage_A = (vacc_flanders_A / POPULATION_FLANDERS * 100).toFixed(2);
+    let percentage_B = (vacc_flanders_B / POPULATION_FLANDERS* 100).toFixed(2);
+
+    return { vacc_flanders_A, vacc_flanders_B, percentage_A, percentage_B };
 }

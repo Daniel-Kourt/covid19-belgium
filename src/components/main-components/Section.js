@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 const Section = ({ title, renderLeft, renderRight, fullDataLink }) => {
     return (
         <div className="px-4 py-8">
-            <h3 className="text-white text-xl mb-4">{title}</h3>
+            <h3 className="text-white text-xl uppercase mb-4">{title}</h3>
 
             <div className="flex flex-wrap">
 
-                <div className="w-full lg:w-1/2 p-4">
+                <div className="w-full lg:w-2/5 p-4 grid place-items-center">
                     {renderLeft}
                 </div>
 
-                <div className="w-full lg:w-1/2 p-4 grid place-items-center">
+                <div className="w-full lg:w-3/5 p-4 grid place-items-center">
                     {renderRight}                    
                 </div>
 

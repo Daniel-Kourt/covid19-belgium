@@ -11,3 +11,7 @@
 html {
     font-family: 'Montserrat', sans-serif;
 }
+
+.total-box {
+    @apply p-4 bg-secondary text-base rounded-md;
+}

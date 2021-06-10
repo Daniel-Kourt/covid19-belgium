@@ -1,14 +1,12 @@
-import { SectionCases, TotalData } from './main-components'
+import { SectionCases, SectionVaccinations, TotalData } from './main-components';
 
 const Main = () => {
 
     return (
         <div>
             <TotalData /> 
-            <SectionCases />                  
-            <SectionCases />                  
-            <SectionCases />                  
-            
+            <SectionCases />
+            <SectionVaccinations />                        
         </div>
     )
 }

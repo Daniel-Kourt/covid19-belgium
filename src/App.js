@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="w-full max-w-screen-lg mx-auto">
+    <div className="w-full max-w-screen-xl mx-auto">
       <DataContextProvider>
         <Router>
           <Header />
