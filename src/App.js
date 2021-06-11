@@ -15,6 +15,7 @@ function App() {
             <Route path="/cases" exact component={Cases} />
             <Route path="/vaccinations" exact component={Vaccinations} />
             <Route path="/deaths" exact component={Deaths} />
+            <Route path="*" exact component={Main} />
           </Switch>
 
         </Router>       

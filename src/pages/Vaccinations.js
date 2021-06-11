@@ -2,6 +2,7 @@ import { useContext } from 'react';
 //import { Pie } from 'react-chartjs-2';
 import moment from 'moment';
 import PageLayout from './PageLayout';
+import VaccByRegionBox from '../components/pages-components/VaccByRegionBox';
 import { DataContext } from '../context/DataContextProvider';
 import { vaccinations_by_date, vaccinations_brussels, vaccinations_wallonia, vaccinations_flanders } from '../utils/vacCalculations';
 
@@ -13,6 +14,9 @@ const Vaccinations = () => {
     const renderTable = () => {
 
         return (
+            <div className="w-full pt-4">
+                <h3 className="text-white font-semibold uppercase mb-4">Vaccinations by date</h3>
+
             <table className="text-center w-full">
                 <thead>
                     <tr className="bg-secondary text-sm font-medium">
@@ -50,45 +54,59 @@ const Vaccinations = () => {
                 </tbody>
 
             </table>
+            </div>
 
         )
     }
 
     const render_by_region = () => {
+
+        const { vacc_brussels_A, vacc_brussels_B, perc_brussels_A, perc_brussels_B } = vaccinations_brussels(vaccinsContext);
+        const { vacc_wallonia_A, vacc_wallonia_B, perc_wallonia_A, perc_wallonia_B } = vaccinations_wallonia(vaccinsContext);
+        const { vacc_flanders_A, vacc_flanders_B, perc_flanders_A, perc_flanders_B } = vaccinations_flanders(vaccinsContext);
+
         return (
-            <div className="w-full">
-                <div className="text-white bg-secondary p-4 rounded-md">
-                    <p className="text-orange mb-2">Brussels</p>
-                    <p>Partly vaccinated: {vaccinations_brussels(vaccinsContext).vacc_brussels_A}</p>
-                    <p>{vaccinations_brussels(vaccinsContext).percentage_A}% of the population</p>
-                    <p className="mt-2">Fully vaccinated: {vaccinations_brussels(vaccinsContext).vacc_brussels_B}</p>
-                    <p>{vaccinations_brussels(vaccinsContext).percentage_B}% of the population</p>              
-                </div>
+            <div className="w-full px-4">
 
-                <div className="text-white bg-secondary p-4 rounded-md">
-                    <p>Wallonia</p>
-                    <p>Partly vaccinated: {vaccinations_wallonia(vaccinsContext).vacc_wallonia_A}</p>
-                    <p>{vaccinations_wallonia(vaccinsContext).percentage_A}% of the population</p>
-                    <p>Fully vaccinated: {vaccinations_wallonia(vaccinsContext).vacc_wallonia_B}</p>
-                    <p>{vaccinations_wallonia(vaccinsContext).percentage_B}% of the population</p>              
-                </div>
+                <h3 className="text-white font-semibold uppercase mb-4">Vaccinated people by region</h3>
+              
+                <VaccByRegionBox 
+                    region="Brussels"
+                    partly_number={vacc_brussels_A}
+                    partly_perc={perc_brussels_A}
+                    fully_number={vacc_brussels_B}
+                    fully_perc={perc_brussels_B}
+                />
 
-                <div className="text-white bg-secondary p-4 rounded-md">
-                    <p>Flanders</p>
-                    <p>Partly vaccinated: {vaccinations_flanders(vaccinsContext).vacc_flanders_A}</p>
-                    <p>{vaccinations_flanders(vaccinsContext).percentage_A}% of the population</p>
-                    <p>Fully vaccinated: {vaccinations_flanders(vaccinsContext).vacc_flanders_B}</p>
-                    <p>{vaccinations_flanders(vaccinsContext).percentage_B}% of the population</p>              
-                </div>
+                <VaccByRegionBox 
+                    region="Wallonia"
+                    partly_number={vacc_wallonia_A}
+                    partly_perc={perc_wallonia_A}
+                    fully_number={vacc_wallonia_B}
+                    fully_perc={perc_wallonia_B}
+                />
+
+                <VaccByRegionBox 
+                    region="Flanders"
+                    partly_number={vacc_flanders_A}
+                    partly_perc={perc_flanders_A}
+                    fully_number={vacc_flanders_B}
+                    fully_perc={perc_flanders_B}
+                />
             </div>
         )
     }
 
     return (
-        <PageLayout
-            renderLeft={render_by_region}
-            renderRight={renderTable}
-        />
+        <>
+            {vaccinsContext &&
+                <PageLayout
+                    renderLeft={render_by_region}
+                    renderRight={renderTable}
+                />
+            
+            }
+        </>
     )
 }
 

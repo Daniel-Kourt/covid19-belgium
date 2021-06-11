@@ -11,7 +11,7 @@ const PageLayout = ({ renderLeft, renderRight }) => {
             <div className="flex flex-wrap">
 
                 <div className="w-full lg:w-1/2 flex flex-col items-center">
-                    <div className="p-8">
+                    <div className="w-full p-8">
                         {renderLeft()}
                     </div> 
                 </div>
