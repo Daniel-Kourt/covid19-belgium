@@ -95,3 +95,26 @@ export const vaccinations_flanders = (vaccins) => {
 
     return { vacc_flanders_A, vacc_flanders_B, perc_flanders_A, perc_flanders_B };
 }
+
+// creates an array of vaccination's daily progress
+export const vaccination_progress = (vaccins) => {
+
+    const vaccinated_people = [];
+    let people_A = 0, people_B = 0;
+
+    vaccinations_by_date(vaccins).reverse().forEach(date => {
+        people_A += date.daily_dose_A;
+        people_B += date.daily_dose_B;
+        let day = date.date;
+
+        vaccinated_people.push({
+            day,
+            people_A,
+            people_B
+        });
+    })
+
+    console.log(vaccinated_people);
+    
+    return vaccinated_people;
+}

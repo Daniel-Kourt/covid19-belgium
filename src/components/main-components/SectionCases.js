@@ -5,6 +5,7 @@ import { DataContext } from '../../context/DataContextProvider';
 import Last7Days from './Last7Days';
 import Section from './Section';
 import { cases_by_date } from '../../utils/casesCalculations';
+import { COLORS } from '../../constants';
 
 
 const SectionCases = () => {
@@ -20,10 +21,10 @@ const SectionCases = () => {
           {
             label: 'Cases',
             data: cases_for_chart,
-            fill: false,
+            fill: true,
             stepped: false,
-            backgroundColor: 'bg-orange',
-            borderColor: 'bg-orange',
+            backgroundColor: COLORS.orange,
+            borderColor: COLORS.orange,
           },
         ],
     };

@@ -12,47 +12,51 @@ const Cases = () => {
     document.title = "Covid-19 Stats in Belgium | Cases";
 
     const renderTable = () => {
-        return (    
-            <table className="text-white text-center w-full">
-                <thead>
-                    <tr className="bg-secondary text-sm text-center font-medium">
-                        <th className="p-4 text-white">Date</th>
-                        <th className="p-4 text-orange">Cases</th>                          
-                        <th className="p-4 text-purple">Brussels</th>                          
-                        <th className="p-4 text-green">Wallonia</th>                          
-                        <th className="p-4 text-red">Flanders</th>                          
-                    </tr>
-                </thead>
+        return ( 
+            <div className="w-full">
+                <h3 className="text-white font-semibold uppercase mb-4">Confirmed Cases by date</h3>
+            
+                <table className="text-white text-center w-full">
+                    <thead>
+                        <tr className="bg-secondary text-sm text-center font-medium">
+                            <th className="p-4 text-white">Date</th>
+                            <th className="p-4 text-orange">Cases</th>                          
+                            <th className="p-4 text-purple">Brussels</th>                          
+                            <th className="p-4 text-green">Wallonia</th>                          
+                            <th className="p-4 text-red">Flanders</th>                          
+                        </tr>
+                    </thead>
 
-                <tbody>
+                    <tbody>
 
-                {cases_by_date(casesContext).map((day, index) => (
-                    <tr 
-                        key={day.date} 
-                        className={`${(index % 2 !== 0) && 'bg-secondary'} text-sm font-medium`}
-                    >
-                        <td className="p-2 text-white">
-                            {moment(day.date).format('DD-MM')}
-                        </td>
-                        <td className="p-2 text-orange">
-                            {day.daily_cases}
-                        </td>
-                        <td className="p-2 text-purple">
-                            {day.daily_brussels}
-                        </td>
-                        <td className="p-2 text-green">
-                            {day.daily_wallonia}
-                        </td>
-                        <td className="p-2 text-red">
-                            {day.daily_flanders}
-                        </td>
-                    </tr>
-                ))
+                    {cases_by_date(casesContext).map((day, index) => (
+                        <tr 
+                            key={day.date} 
+                            className={`${(index % 2 !== 0) && 'bg-secondary'} text-sm font-medium`}
+                        >
+                            <td className="p-2 text-white">
+                                {moment(day.date).format('DD-MM')}
+                            </td>
+                            <td className="p-2 text-orange">
+                                {day.daily_cases}
+                            </td>
+                            <td className="p-2 text-purple">
+                                {day.daily_brussels}
+                            </td>
+                            <td className="p-2 text-green">
+                                {day.daily_wallonia}
+                            </td>
+                            <td className="p-2 text-red">
+                                {day.daily_flanders}
+                            </td>
+                        </tr>
+                    ))
 
-                }
-                
-                </tbody>
-            </table>
+                    }
+                    
+                    </tbody>
+                </table>
+            </div>
     
         )
     }
@@ -61,22 +65,24 @@ const Cases = () => {
 
     const pie_chart_by_gender = () => {
 
+        const { cases_male, cases_female } = cases_by_gender(casesContext);
+        
         const data = {
             labels: ['Men', 'Women'],
             datasets: [
               {
                 label: 'Cases',
                 backgroundColor: [
-                COLORS.green,
-                COLORS.red
+                    COLORS.green,
+                    COLORS.red
                 ],
                 hoverBackgroundColor: [
-                COLORS.greenHover,
-                COLORS.redHover
+                    COLORS.greenHover,
+                    COLORS.redHover
                 ],
                 data: [
-                    cases_by_gender(casesContext).cases_male,
-                    cases_by_gender(casesContext).cases_female
+                    cases_male,
+                    cases_female
                 ]
               }
             ]
@@ -94,7 +100,10 @@ const Cases = () => {
             }
         }
 
-        return <Pie data={data} options={options} />
+        return <div className="max-w-sm">
+            <h3 className="text-white font-semibold uppercase mb-4">Confirmed Cases by gender</h3>
+            <Pie data={data} options={options} />
+            </div>
 
     }
 

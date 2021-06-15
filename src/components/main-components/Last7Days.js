@@ -4,7 +4,7 @@ const Last7Days = ({ renderTable }) => {
         <div className="bg-secondary p-4 rounded-lg w-full max-w-sm">
 
             <p className="text-white text-left text-lg font-semibold mb-4 pl-2">
-                Last 7 Days
+                Last Week
             </p>
 
             {renderTable()}

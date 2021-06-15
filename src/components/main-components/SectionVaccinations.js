@@ -4,7 +4,8 @@ import moment from 'moment';
 import { DataContext } from '../../context/DataContextProvider';
 import Last7Days from './Last7Days';
 import Section from './Section';
-import { vaccinations_by_date } from '../../utils/vacCalculations';
+import { vaccinations_by_date, vaccination_progress } from '../../utils/vacCalculations';
+import { COLORS } from '../../constants';
 
 const SectionVaccinations = () => {
 
@@ -50,13 +51,45 @@ const SectionVaccinations = () => {
         )
     }
 
+    const vaccinated_people = vaccination_progress(vaccinsContext);
+
+    const data = {
+        labels: vaccinated_people.map(date => moment(date.day).format('DD-MM')),
+        datasets: [
+          {
+            label: 'Partly Vaccinated',
+            data: vaccinated_people.map(date => date.people_A),
+            fill: false,
+            stepped: false,
+            backgroundColor: COLORS.purple,
+            borderColor: COLORS.purple,
+          },
+          {
+            label: 'Fully Vaccinated',
+            data: vaccinated_people.map(date => date.people_B),
+            fill: false,
+            stepped: false,
+            backgroundColor: COLORS.green,
+            borderColor: COLORS.green,
+          },
+        ],
+    };
+
+    const options = {        
+        title: {
+          display: true,
+          text: 'Covid-19 Vacc',
+          color: COLORS.orange
+        },       
+    };
+
     return (
         <>
         {vaccinsContext &&
             <Section 
                 title="Vaccinations"
                 renderLeft={ <Last7Days renderTable={renderTable} /> } 
-                renderRight={ <div>right</div> } 
+                renderRight={ <Line data={data} options={options} /> } 
                 fullDataLink="/vaccinations"
             />
         }

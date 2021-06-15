@@ -14,16 +14,16 @@ const Vaccinations = () => {
     const renderTable = () => {
 
         return (
-            <div className="w-full pt-4">
+            <div className="w-full">
                 <h3 className="text-white font-semibold uppercase mb-4">Vaccinations by date</h3>
 
-            <table className="text-center w-full">
+            <table className="w-full">
                 <thead>
                     <tr className="bg-secondary text-sm font-medium">
-                        <th className="p-4 text-white text-center">Date</th>
-                        <th className="p-4 text-orange text-right">Vaccinations</th>
-                        <th className="p-4 text-purple text-right">Dose A</th>
-                        <th className="p-4 text-green text-right">Dose B</th>                            
+                        <th className="px-2 py-4 text-white text-center">Date</th>
+                        <th className="px-2 py-4 text-orange text-right">Vaccinations</th>
+                        <th className="px-2 py-4 text-purple text-right">Dose A</th>
+                        <th className="px-2 py-4 text-green text-right">Dose B</th>                            
                     </tr>
                 </thead>
 
@@ -34,7 +34,7 @@ const Vaccinations = () => {
                         key={day.date} 
                         className={`${(index % 2 !== 0) && 'bg-secondary'} text-sm font-medium`}
                     >
-                        <td className="p-2 text-white">
+                        <td className="p-2 text-white text-center">
                             {moment(day.date).format('DD-MM')}
                         </td>
                         <td className="p-2 text-orange text-right">
@@ -66,7 +66,7 @@ const Vaccinations = () => {
         const { vacc_flanders_A, vacc_flanders_B, perc_flanders_A, perc_flanders_B } = vaccinations_flanders(vaccinsContext);
 
         return (
-            <div className="w-full px-4">
+            <div className="w-full">
 
                 <h3 className="text-white font-semibold uppercase mb-4">Vaccinated people by region</h3>
               
