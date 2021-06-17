@@ -12,6 +12,10 @@ html {
     font-family: 'Montserrat', sans-serif;
 }
 
+.navlink {
+    @apply border-b-2 border-primary hover:border-orange transition duration-200;
+}
+
 .total-box {
     @apply p-4 bg-secondary text-base rounded-md;
 }

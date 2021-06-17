@@ -1,4 +1,4 @@
-import { SectionCases, SectionVaccinations, TotalData } from './main-components';
+import { SectionCases, SectionDeaths, SectionVaccinations, TotalData } from './main-components';
 
 const Main = () => {
 
@@ -8,7 +8,8 @@ const Main = () => {
         <div>
             <TotalData /> 
             <SectionCases />
-            <SectionVaccinations />                        
+            <SectionVaccinations />
+            <SectionDeaths />                                
         </div>
     )
 }

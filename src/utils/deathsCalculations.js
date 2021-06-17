@@ -33,4 +33,6 @@ export const deaths_by_date = (deaths) => {
             deaths_total_F
         });
     })
+
+    return deathsFiltered;
 }

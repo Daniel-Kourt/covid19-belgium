@@ -7,13 +7,12 @@ const DataContextProvider = (props) => {
 
     const [casesData, casesError, casesLoading] = useAxios('COVID19BE_CASES_AGESEX.json');
     const [vaccData, vaccError, vaccLoading] = useAxios('COVID19BE_VACC.json');
+    const [deathsData, deathsError, deathsLoading] = useAxios('COVID19BE_MORT.json');
     
     const [casesContext, setCasesContext] = useState(null);
     const [vaccinsContext, setVaccinsContext] = useState(null);
-    
-    console.log(vaccinsContext);
-    
-
+    const [deathsContext, setDeathsContext] = useState(null);
+        
     useEffect(() => {
 
         if ( vaccError ) {
@@ -32,9 +31,13 @@ const DataContextProvider = (props) => {
         setCasesContext( casesData );
     }, [casesLoading])
 
+    useEffect(() => {
+        setDeathsContext( deathsData );
+    }, [deathsLoading])
+
     
     return (
-        <DataContext.Provider value={{ vaccinsContext, casesContext }}>
+        <DataContext.Provider value={{ vaccinsContext, casesContext, deathsContext }}>
             {props.children}
         </DataContext.Provider>
     )

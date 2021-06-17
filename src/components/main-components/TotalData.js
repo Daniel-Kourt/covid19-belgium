@@ -2,15 +2,16 @@ import React, { useContext } from 'react';
 import { DataContext } from '../../context/DataContextProvider';
 import { count_vaccinations_A, count_vaccinations_B } from '../../utils/vacCalculations';
 import { count_cases, cases_by_date } from '../../utils/casesCalculations';
+import { total_deaths, deaths_by_date } from '../../utils/deathsCalculations';
 
 const TotalData = () => {
 
-    const { vaccinsContext, casesContext } = useContext(DataContext);
+    const { vaccinsContext, casesContext, deathsContext } = useContext(DataContext);
     
     return (
         <> 
             
-            {(vaccinsContext && casesContext)
+            {(vaccinsContext && casesContext && deathsContext)
             ?
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 sm:px-16 md:px-24 lg:px-8">
                     
@@ -28,10 +29,10 @@ const TotalData = () => {
                     {/* ----- Deaths ----- */}
                     <div className="total-box text-red">
                         <p className="mb-2 uppercase">Total deaths</p>
-                        <p className="text-3xl">{(25680).toLocaleString()}</p>
+                        <p className="text-3xl">{total_deaths(deathsContext).toLocaleString()}</p>
                         <p> persons</p>
                         <p className="mt-2 text-xl">
-                            {(1253).toLocaleString()}
+                            {deaths_by_date(deathsContext).slice(0,7).reduce( (sum, { deaths_total }) => sum + deaths_total, 0 ).toLocaleString()}
                         </p>
                         <p>in last week</p>                        
                     </div>
