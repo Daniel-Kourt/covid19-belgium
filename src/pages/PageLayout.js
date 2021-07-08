@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom';
+import { FaChevronLeft } from 'react-icons/fa';
 
-const PageLayout = ({ renderLeft, renderRight }) => {
+const PageLayout = ({ title, renderLeft, renderRight }) => {
     return (
         <div>
-            <h1 className="text-orange text-xl py-10">Cases</h1>
-            <Link to="/">
-                <span className="text-white text-sm">Return to homepage</span>
-            </Link>
+            <h1 className="text-orange text-lg p-4">
+                Statistical Data about {title}
+            </h1>
+                        
+            <div className="pb-4 flex justify-end text-sm">
+                <div className="w-48">
+                    <Link to="/" className="flex items-center text-white hover:text-orange">
+                        <FaChevronLeft className="pr-1" style={{fontSize: '0.7rem'}}/> 
+                        <span>Return to homepage</span>
+                    </Link>
+                </div>
+            </div>
 
             <div className="flex flex-wrap">
 

@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
+import { FaChevronRight } from 'react-icons/fa';
 
 const Section = ({ title, renderLeft, renderRight, fullDataLink }) => {
     return (
         <div className="px-4 py-8">
-            <h3 className="text-white text-xl uppercase mb-4">{title}</h3>
+
+            <h3 className="text-white text-xl uppercase mb-4 font-bold">
+                {title}
+            </h3>
 
             <div className="flex flex-wrap">
 
@@ -17,12 +21,13 @@ const Section = ({ title, renderLeft, renderRight, fullDataLink }) => {
 
             </div>
             
-            <div className="p-4 text-white text-right">
-                <Link to={fullDataLink}>
-                    Full Data 
-                </Link>
+            <div className="p-4 flex justify-end">
+                <div className="w-24">
+                    <Link to={fullDataLink} className="flex items-center text-white hover:text-orange">
+                        Full Data <FaChevronRight className="text-sm pl-1"/>
+                    </Link>
+                </div>
             </div>
-            
             
         </div>
     )

@@ -57,7 +57,7 @@ const TotalData = () => {
 
                 </div>
             :
-                <div className="text-white pt-8">Loading data ... </div>    
+                <div className="text-white text-center pt-8 min-h-screen">Loading data ... </div>    
             }
 
            

@@ -10,10 +10,8 @@ export const useAxios = (url) => {
 
     const fetchData = async (url) => {
       try {
-        //console.log(url);
         const response = await axios.get(url);
         setResponse(response.data);
-        //console.log(response.data);
       } 
       catch( error ) {
         setError(error);

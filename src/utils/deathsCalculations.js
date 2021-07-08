@@ -36,3 +36,57 @@ export const deaths_by_date = (deaths) => {
 
     return deathsFiltered;
 }
+
+// calculates the deaths by age group
+export const deaths_by_age_group = (deaths) => {
+    let deaths_85 = 0, 
+        deaths_75_84 = 0,
+        deaths_65_74 = 0, 
+        deaths_45_64 = 0,         
+        deaths_0_44 = 0;
+
+    deaths.forEach(item => {
+        switch (item.AGEGROUP) {
+            case '85+':
+                deaths_85 += item.DEATHS;
+                break;
+            case '75-84':
+                deaths_75_84 += item.DEATHS;
+                break;
+            case '65-74':
+                deaths_65_74 += item.DEATHS;
+                break;
+            case '45-64':
+                deaths_45_64 += item.DEATHS;
+                break;
+            case '25-44':
+                deaths_0_44 += item.DEATHS;
+                break;
+            case '0-24':
+                deaths_0_44 += item.DEATHS;
+                break;            
+        }
+    })
+
+    return {deaths_0_44, deaths_45_64, deaths_65_74, deaths_75_84, deaths_85};
+}
+
+
+// calculates the deaths by gender
+export const deaths_by_gender = (deaths) => {
+    let deaths_M = 0, 
+        deaths_F = 0;
+
+    deaths.forEach(item => {
+        switch (item.SEX) {
+            case 'M':
+                deaths_M += item.DEATHS;
+                break;
+            case 'F':
+                deaths_F += item.DEATHS;
+                break;
+        }
+    })
+
+    return {deaths_M, deaths_F};
+}

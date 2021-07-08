@@ -101,6 +101,7 @@ const Vaccinations = () => {
         <>
             {vaccinsContext &&
                 <PageLayout
+                    title="Vaccination Progress for Covid-19"
                     renderLeft={render_by_region}
                     renderRight={renderTable}
                 />

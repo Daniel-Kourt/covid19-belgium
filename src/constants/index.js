@@ -5,6 +5,7 @@ export const COLORS = {
     red: '#e42a5b',
     green: '#5eb670',
     purple: '#a78bfa',
+    blue: '#011845',
     redHover: '#be2a5b',
     greenHover: '#5e9870',
 }

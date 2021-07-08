@@ -1,4 +1,4 @@
-import { Header, Main } from './components';
+import { Footer, Header, Main } from './components';
 import { Cases, Deaths, Vaccinations } from './pages';
 import DataContextProvider from './context/DataContextProvider';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -15,8 +15,10 @@ function App() {
             <Route path="/cases" exact component={Cases} />
             <Route path="/vaccinations" exact component={Vaccinations} />
             <Route path="/deaths" exact component={Deaths} />
-            <Route path="*" exact component={Main} />
+            <Route path="*" component={Main} />
           </Switch>
+
+          <Footer />
 
         </Router>       
                

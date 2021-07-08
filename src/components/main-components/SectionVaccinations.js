@@ -51,37 +51,45 @@ const SectionVaccinations = () => {
         )
     }
 
-    const vaccinated_people = vaccination_progress(vaccinsContext);
+    const renderLineChart = () => {
 
-    const data = {
-        labels: vaccinated_people.map(date => moment(date.day).format('DD-MM')),
-        datasets: [
-          {
-            label: 'Partly Vaccinated',
-            data: vaccinated_people.map(date => date.people_A),
-            fill: false,
-            stepped: false,
-            backgroundColor: COLORS.purple,
-            borderColor: COLORS.purple,
-          },
-          {
-            label: 'Fully Vaccinated',
-            data: vaccinated_people.map(date => date.people_B),
-            fill: false,
-            stepped: false,
-            backgroundColor: COLORS.green,
-            borderColor: COLORS.green,
-          },
-        ],
-    };
+        const vaccinated_people = vaccination_progress(vaccinsContext);
 
-    const options = {        
-        title: {
-          display: true,
-          text: 'Covid-19 Vacc',
-          color: COLORS.orange
-        },       
-    };
+        const data = {
+            labels: vaccinated_people.map(date => moment(date.day).format('DD-MM')),
+            datasets: [
+            {
+                label: 'Partly Vaccinated',
+                data: vaccinated_people.map(date => date.people_A),
+                fill: false,
+                stepped: false,
+                backgroundColor: COLORS.purple,
+                borderColor: COLORS.purple,
+            },
+            {
+                label: 'Fully Vaccinated',
+                data: vaccinated_people.map(date => date.people_B),
+                fill: false,
+                stepped: false,
+                backgroundColor: COLORS.green,
+                borderColor: COLORS.green,
+            },
+            ],
+        };
+
+        const options = {
+            plugins: {        
+                title: {
+                    display: true,
+                    text: "Covid-19 Vaccination's Progress by date",
+                    color: COLORS.orange
+                },
+            }       
+        };
+
+        return <Line data={data} options={options} />;
+    }
+    
 
     return (
         <>
@@ -89,7 +97,7 @@ const SectionVaccinations = () => {
             <Section 
                 title="Vaccinations"
                 renderLeft={ <Last7Days renderTable={renderTable} /> } 
-                renderRight={ <Line data={data} options={options} /> } 
+                renderRight={ renderLineChart() } 
                 fullDataLink="/vaccinations"
             />
         }

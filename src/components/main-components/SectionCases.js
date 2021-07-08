@@ -11,31 +11,38 @@ import { COLORS } from '../../constants';
 const SectionCases = () => {
 
     const { casesContext } = useContext(DataContext);
-    
-    let dates_for_chart = cases_by_date(casesContext).map(date => moment(date.date).format('DD-MM-YY')).reverse();
-    let cases_for_chart = cases_by_date(casesContext).map(date => date.daily_cases).reverse();
-   
-    const data = {
-        labels: dates_for_chart,
-        datasets: [
-          {
-            label: 'Cases',
-            data: cases_for_chart,
-            fill: true,
-            stepped: false,
-            backgroundColor: COLORS.orange,
-            borderColor: COLORS.orange,
-          },
-        ],
-    };
 
-    const options = {        
-        title: {
-          display: true,
-          text: 'Covid-19 Cases',
-          color: 'orange'
-        },       
-    };
+    const renderLineChart = () => {
+
+        let dates_for_chart = cases_by_date(casesContext).map(date => moment(date.date).format('DD-MM-YY')).reverse();
+        let cases_for_chart = cases_by_date(casesContext).map(date => date.daily_cases).reverse();
+
+        const data = {
+            labels: dates_for_chart,
+            datasets: [
+              {
+                label: 'Cases',
+                data: cases_for_chart,
+                fill: true,
+                stepped: false,
+                backgroundColor: COLORS.orange,
+                borderColor: COLORS.orange,
+              },
+            ],
+        };
+    
+        const options = {
+            plugins: {        
+                title: {
+                    display: true,
+                    text: 'Covid-19 Cases by date',
+                    color: COLORS.orange
+                },
+            }     
+        };
+
+        return <Line data={data} options={options} />;
+    }
     
     const renderTable = () => {
         return (    
@@ -77,7 +84,7 @@ const SectionCases = () => {
             <Section 
                 title="Cases"
                 renderLeft={ <Last7Days renderTable={renderTable} /> } 
-                renderRight={ <Line data={data} options={options} /> } 
+                renderRight={ renderLineChart() } 
                 fullDataLink="/cases"
             />
         }

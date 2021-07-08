@@ -11,30 +11,38 @@ const SectionDeaths = () => {
 
     const { deathsContext } = useContext(DataContext);
 
-    let dates_for_chart = deaths_by_date(deathsContext).map(date => moment(date.date).format('DD-MM-YY')).reverse();
-    let deaths_for_chart = deaths_by_date(deathsContext).map(date => date.deaths_total).reverse();
-   
-    const data = {
-        labels: dates_for_chart,
-        datasets: [
-          {
-            label: 'Deaths',
-            data: deaths_for_chart,
-            fill: true,
-            stepped: false,
-            backgroundColor: COLORS.red,
-            borderColor: COLORS.red,
-          },
-        ],
-    };
+    const renderLineChart = () => {
 
-    const options = {        
-        title: {
-          display: true,
-          text: 'Covid-19 Cases',
-          color: 'orange'
-        },       
-    };
+        let dates_for_chart = deaths_by_date(deathsContext).map(date => moment(date.date).format('DD-MM-YY')).reverse();
+        let deaths_for_chart = deaths_by_date(deathsContext).map(date => date.deaths_total).reverse();
+    
+        const data = {
+            labels: dates_for_chart,
+            datasets: [
+            {
+                label: 'Deaths',
+                data: deaths_for_chart,
+                fill: true,
+                stepped: false,
+                backgroundColor: COLORS.red,
+                borderColor: COLORS.red,
+            },
+            ],
+        };
+
+        const options = {
+            plugins: {        
+                title: {
+                    display: true,
+                    text: 'Covid-19 Deaths by date',
+                    color: COLORS.orange
+                },
+            }       
+        };
+
+        return <Line data={data} options={options} />;
+    }
+
 
     const renderTable = () => {
         return (    
@@ -76,7 +84,7 @@ const SectionDeaths = () => {
             <Section 
                 title="Deaths"
                 renderLeft={ <Last7Days renderTable={renderTable} /> } 
-                renderRight={ <Line data={data} options={options} /> } 
+                renderRight={ renderLineChart() } 
                 fullDataLink="/deaths"
             />
         }
