@@ -3,9 +3,9 @@ import { FaChevronRight } from 'react-icons/fa';
 
 const Section = ({ title, renderLeft, renderRight, fullDataLink }) => {
     return (
-        <div className="px-4 py-8">
+        <div className="px-4 py-8 shadow-xl">
 
-            <h3 className="text-white text-xl uppercase mb-4 font-bold">
+            <h3 className="text-white text-xl uppercase mb-4 pl-4 font-bold">
                 {title}
             </h3>
 

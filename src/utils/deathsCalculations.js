@@ -64,6 +64,8 @@ export const deaths_by_age_group = (deaths) => {
                 break;
             case '0-24':
                 deaths_0_44 += item.DEATHS;
+                break;
+            default:
                 break;            
         }
     })
@@ -84,6 +86,8 @@ export const deaths_by_gender = (deaths) => {
                 break;
             case 'F':
                 deaths_F += item.DEATHS;
+                break;
+            default:
                 break;
         }
     })

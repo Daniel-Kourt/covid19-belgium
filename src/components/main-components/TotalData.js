@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Loader from "react-loader-spinner";
 import { DataContext } from '../../context/DataContextProvider';
 import { count_vaccinations_A, count_vaccinations_B } from '../../utils/vacCalculations';
 import { count_cases, cases_by_date } from '../../utils/casesCalculations';
@@ -57,7 +58,17 @@ const TotalData = () => {
 
                 </div>
             :
-                <div className="text-white text-center pt-8 min-h-screen">Loading data ... </div>    
+                <div className="min-h-screen flex flex-col items-center justify-center">
+                    <Loader
+                        type="Puff"
+                        color="#a78bfa"
+                        height={100}
+                        width={100}                        
+                    /> 
+                    <p className="pt-4 text-base text-white">
+                        Loading data
+                    </p>
+                </div>    
             }
 
            

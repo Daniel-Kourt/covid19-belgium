@@ -98,6 +98,8 @@ export const cases_by_age_group = (cases) => {
                 case '80-89':
                     cases_80_89 += item.CASES;
                     break;
+                default:
+                break;
             }
         })        
 
